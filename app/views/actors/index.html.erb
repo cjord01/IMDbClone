@@ -1,9 +1,11 @@
 <div>
-	<h2>ACTORS</h2>
-	<%= render 'new' %>
-	<div>
-		<% @actors.each do |actor| %>
-			<h3><%= link_to "#{actor.name}", actor_path(actor)%></h3>
-		<% end %>
+	<div class="jumbotron center">
+		<h1>ACTORS</h1>
+		<%= render 'new' %>
 	</div>
+	<% @actors.each do |actor| %>
+		<h3>
+			<%= link_to "#{actor.name}", actor_path(actor)%>
+		</h3>
+	<% end %>
 </div>
