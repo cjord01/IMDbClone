@@ -1,6 +1,7 @@
-<div class="row">
-	<div class="small-9 columns">
-		<a class="th">
+<div>
+	<div>
+
+		<a>
 			<%= image_tag @suckr.get_image_url({"q" => @movie.title + " movie poster"}), :style => "height:250px"%>
 		</a>
 		<h2>
@@ -17,15 +18,18 @@
 		  </div>
 		</div>
 
-		<h3>
+		<div id="actors" class="transitions-enabled">	
 			<% @roles.each do |role| %>
-				<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
-				<br>
-				<a class="th">
-					<%= image_tag @suckr.get_image_url({"q" => role.actor.name + ' ' + role.movie.title}), :style => "height:200px" %>
-				</a>
-				<br>
+				<div class="box panel panel-default">
+					<h3 class="center">
+						<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
+					</h3>
+					<div class="panel-body">
+						<%= image_tag @suckr.get_image_url({"q" => role.actor.name + ' ' + role.movie.title})%>
+					</div>
+				</div>
 			<% end %>
-		</h3>
+		</div>
+
 	</div>
 </div>

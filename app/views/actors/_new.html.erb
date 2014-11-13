@@ -1,8 +1,10 @@
-<div>
-  <div>
+<div class="row">
+  <div class="col-xs-5">
+  	<div class="form-inline">
 		<%= form_for @actor do |f| %>
-			<%= f.text_field :name, placeholder: "Name" %>
-			<%= f.submit "Add Actor", :class=>"button"%>
+			<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+			<%= f.submit "Add Actor", :class=>"btn btn-primary"%>
 		<% end %>
-	</div>
-</div>	
+		</div>
+  </div>
+</div>

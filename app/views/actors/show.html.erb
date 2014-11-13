@@ -17,14 +17,18 @@
 		  </div>
 		</div>
 
-		<h3>
+		<div id="movies" class="transitions-enabled">
 			<% @roles.each do |role| %>
-				<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
-				<a>
-					<%= image_tag @suckr.get_image_url({"q" => role.movie.title + ' ' + @actor.name}), :style => "height:200px" %>
-				</a>
-				<br>
+				<div class="box panel panel-default">
+					<h3 class="center">
+						<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
+					</h3>
+					<div class="panel-body">
+						<%= image_tag @suckr.get_image_url({"q" => role.movie.title + ' ' + @actor.name})%>
+					</div>
+				</div>
 			<% end %>
-		</h3>
+		</div>
+
 	</div>
 </div>
