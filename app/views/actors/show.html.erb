@@ -1,34 +1,34 @@
 <div>
-	<div>
-		<a>
-			<%= image_tag @suckr.get_image_url({"q" => "Actor " + @actor.name}), :style => "height:250px"%>
-		</a>
-		<h2>
-			<%= @actor.name %>
-		</h2>
 
-		<div>
-		  <div>
-		    <%= form_for @role do |f| %>
-		      Movie<%= f.collection_select(:movie_id, @movies, :id, :title) %>
-		      <%= f.hidden_field(:actor_id, :value => @actor.id) %>
-		      <%= f.submit "Add Role", :class=>"button"%>
-		    <% end %>
-		  </div>
+	<div id="actors" class="transitions-enabled">
+		<div class="box panel panel-default">
+			<div class="panel-body">
+				<h2 class="center">
+					<%= @actor.name %>
+				</h2>
+					<%= image_tag @suckr.get_image_url({"q" => "Actor " + @actor.name})%>
+			  <div>
+			    <%= form_for @role do |f| %>
+			      Movie<%= f.collection_select(:movie_id, @movies, :id, :title) %>
+			      <%= f.hidden_field(:actor_id, :value => @actor.id) %>
+			      <%= f.submit "Add Role", :class=>"button"%>
+			    <% end %>
+			  </div>
+			</div>
 		</div>
+	</div>			  
 
-		<div id="movies" class="transitions-enabled">
-			<% @roles.each do |role| %>
-				<div class="box panel panel-default">
-					<h3 class="center">
-						<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
-					</h3>
-					<div class="panel-body">
-						<%= image_tag @suckr.get_image_url({"q" => role.movie.title + ' ' + @actor.name})%>
-					</div>
+	<div id="movies" class="transitions-enabled">
+		<% @roles.each do |role| %>
+			<div class="box panel panel-default">
+				<h3 class="center">
+					<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
+				</h3>
+				<div class="panel-body">
+					<%= image_tag @suckr.get_image_url({"q" => role.movie.title + ' ' + @actor.name})%>
 				</div>
-			<% end %>
-		</div>
-
+			</div>
+		<% end %>
 	</div>
+
 </div>
