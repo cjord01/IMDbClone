@@ -1,0 +1,9 @@
+<div>
+	<div>
+		<h2>ACTORS</h2>
+		<%= render 'new' %>
+		<% @actors.each do |actor| %>
+			<h3><%= link_to "#{actor.name}", actor_path(actor)%></h3>
+		<% end %>
+	</div>
+</div>

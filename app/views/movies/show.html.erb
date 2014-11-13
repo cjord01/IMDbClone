@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="small-9 columns">
+		<a class="th">
+			<%= image_tag @suckr.get_image_url({"q" => @movie.title + " movie poster"}), :style => "height:250px"%>
+		</a>
+		<h2>
+			<%= @movie.title %>
+		</h2>
+
+		<div>
+		  <div>
+		    <%= form_for @role do |f| %>
+		      Actor<%= f.collection_select(:actor_id, @actors, :id, :name) %>
+		      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
+		      <%= f.submit "Add Role", :class=>"button"%>
+		    <% end %>
+		  </div>
+		</div>
+
+		<h3>
+			<% @roles.each do |role| %>
+				<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
+				<br>
+				<a class="th">
+					<%= image_tag @suckr.get_image_url({"q" => role.actor.name + ' ' + role.movie.title}), :style => "height:200px" %>
+				</a>
+				<br>
+			<% end %>
+		</h3>
+	</div>
+</div>

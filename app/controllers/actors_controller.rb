@@ -2,11 +2,15 @@ class ActorsController < ApplicationController
 
 	def index
 		@actors = Actor.all.sort { |a,b| a.name <=> b.name }
+		@actor = Actor.new
 	end
 
 	def show
 		@actor = Actor.find(params[:id])
 		@roles = @actor.roles.sort { |a,b| a.movie.title <=> b.movie.title }
+		@role = Role.new
+		@movies = Movie.all.sort { |a,b| a.title <=> b.title }
+		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def new

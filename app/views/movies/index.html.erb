@@ -1,0 +1,11 @@
+<div>
+	<div>
+		<h2>MOVIES</h2>
+		<%= render 'new' %>
+		<% @movies.each do |movie| %>
+			<h3>
+				<%= link_to "#{movie.title}", movie_path(movie)%>
+			</h3>
+		<% end %>
+	</div>
+</div>

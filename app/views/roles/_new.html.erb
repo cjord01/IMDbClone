@@ -1,0 +1,9 @@
+<div>
+  <div>
+    <%= form_for @role do |f| %>
+      Movie<%= f.collection_select(:movie_id, @movies, :id, :title) %>
+      Actor<%= f.collection_select(:actor_id, @actors, :id, :name) %>
+      <%= f.submit "Add Role", :class=>"button"%>
+    <% end %>
+  </div>
+</div>
