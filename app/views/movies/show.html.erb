@@ -8,11 +8,11 @@
 					<%= @movie.title %>
 				</h2>
 				<%= image_tag @suckr.get_image_url({"q" => @movie.title + " movie poster"})%>
-			  <div class="center">
+			  <div class="center" id="new-form">
 			    <%= form_for @role do |f| %>
-			      Actor<%= f.collection_select(:actor_id, @actors, :id, :name) %>
+			      <%= f.collection_select(:actor_id, @actors, :id, :name) %>
 			      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
-			      <%= f.submit "Add Role", :class=>"button"%>
+			      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
 			    <% end %>
 			  </div>
 			</div>

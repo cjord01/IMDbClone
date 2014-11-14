@@ -3,9 +3,18 @@
 		<h1>ACTORS</h1>
 		<%= render 'new' %>
 	</div>
-	<% @actors.each do |actor| %>
-		<h3>
-			<%= link_to "#{actor.name}", actor_path(actor)%>
-		</h3>
-	<% end %>
+
+	<div id="actors" class="transitions-enabled">	
+		<% @actors.each do |actor| %>
+			<div class="box panel panel-default">
+				<h3 class="center">
+					<%= link_to "#{actor.name}", actor_path(actor) %>
+				</h3>
+				<div class="panel-body">
+					<%= image_tag @suckr.get_image_url({"q" => "Actor " + actor.name})%>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
 </div>

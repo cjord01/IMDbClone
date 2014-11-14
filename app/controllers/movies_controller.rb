@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 	def index
 		@movies = Movie.all.sort { |a,b| a.title <=> b.title }
 		@movie = Movie.new
+		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def show

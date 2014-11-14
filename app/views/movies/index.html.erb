@@ -1,11 +1,21 @@
 <div>
+
 	<div class="jumbotron center">
 		<h1>MOVIES</h1>
 		<%= render 'new' %>
 	</div>
-	<% @movies.each do |movie| %>
-		<h3>
-			<%= link_to "#{movie.title}", movie_path(movie)%>
-		</h3>
-	<% end %>
+	
+	<div id="movies" class="transitions-enabled">	
+		<% @movies.each do |movie| %>
+			<div class="box panel panel-default">
+				<h3 class="center">
+					<%= link_to "#{movie.title}", movie_path(movie) %>
+				</h3>
+				<div class="panel-body">
+					<%= image_tag @suckr.get_image_url({"q" => movie.title + ' movie poster'})%>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
 </div>
