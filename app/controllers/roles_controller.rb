@@ -18,6 +18,18 @@ class RolesController < ApplicationController
     end
   end
 
+  def edit
+    @role = Role.find(params[:id])
+    suckr = ImageSuckr::GoogleSuckr.new
+    @role.image = suckr.get_image_file({"q" => @role.actor.name + " " + @role.movie.title})
+    if @role.save && @role.image != nil
+      redirect_to movie_path(@role.movie.id)
+    else 
+      @role.destroy
+      redirect_to root_path
+    end
+  end
+
   def destroy
     @role = Role.find(params[:id])
     movie_id = @role.movie.id
