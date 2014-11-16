@@ -1,5 +1,5 @@
 <div>
-<%= link_to 'Back', actors_path %>
+<%= link_to 'All Actors', actors_path %>
 
 	<div id="actors" class="transitions-enabled">
 		<div class="box panel panel-default">
@@ -7,7 +7,7 @@
 				<h2 class="center">
 					<%= @actor.name %>
 				</h2>
-					<%= image_tag @suckr.get_image_url({"q" => "Actor " + @actor.name})%>
+					<%= image_tag @actor.image.url(:medium) %>
 			  <div class="center" id="new-form">
 			    <%= form_for @role do |f| %>
 			      <%= f.collection_select(:movie_id, @movies, :id, :title, {:class=>"btn btn-default dropdown-toggle"}, {:id=>"dropdownMenu1"}) %>
@@ -15,6 +15,9 @@
 			      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
 			    <% end %>
 			  </div>
+		  	<%= link_to @actor, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            Delete
+        <% end %>
 			</div>
 		</div>
 	</div>			  
@@ -26,7 +29,7 @@
 					<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
 				</h3>
 				<div class="panel-body">
-					<%= image_tag @suckr.get_image_url({"q" => role.movie.title + ' ' + @actor.name})%>
+					<%= image_tag role.image.url(:medium) %>
 				</div>
 			</div>
 		<% end %>

@@ -12,10 +12,13 @@
 					<%= link_to "#{movie.title}", movie_path(movie) %>
 				</h3>
 				<div class="panel-body">
-					<%= image_tag @suckr.get_image_url({"q" => movie.title + ' movie poster'})%>
+					<%= image_tag movie.image.url(:medium) %>
 				</div>
 			</div>
 		<% end %>
+	</div>
+	<div class="center">
+		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
 	</div>
 
 </div>

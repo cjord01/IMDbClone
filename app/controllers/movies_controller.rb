@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
 	def index
-		@movies = Movie.all.sort { |a,b| a.title <=> b.title }
+		@movies = Movie.all.order("title ASC").paginate(:page => params[:page], :per_page => 24)
 		@movie = Movie.new
-		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def show
@@ -10,7 +9,6 @@ class MoviesController < ApplicationController
 		@roles = @movie.roles.sort { |a,b| a.actor.name <=> b.actor.name }
 		@role = Role.new
 		@actors = Actor.all.sort { |a,b| a.name <=> b.name }
-		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def new
@@ -19,11 +17,25 @@ class MoviesController < ApplicationController
 
 	def create
 		@movie = Movie.create(movie_params)
-		redirect_to movie_path(@movie.id)
+		suckr = ImageSuckr::GoogleSuckr.new
+		@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
+		if @movie.save && @movie.image != nil
+			redirect_to movie_path(@movie.id)
+		else 
+			@movie.destroy
+			redirect_to movies_path
+		end
+	end
+
+	def destroy
+		@movie = Movie.find(params[:id])
+		@movie.roles.destroy_all
+		@movie.destroy
+		redirect_to movies_path
 	end
 
 	private
 	def movie_params
-		params.require(:movie).permit(:title, :year)
+		params.require(:movie).permit(:title)
 	end
 end

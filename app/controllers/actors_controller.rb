@@ -1,9 +1,8 @@
 class ActorsController < ApplicationController
 
 	def index
-		@actors = Actor.all.sort { |a,b| a.name <=> b.name }
+		@actors = Actor.all.order("Name ASC").paginate(:page => params[:page], :per_page => 24)
 		@actor = Actor.new
-		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def show
@@ -11,7 +10,6 @@ class ActorsController < ApplicationController
 		@roles = @actor.roles.sort { |a,b| a.movie.title <=> b.movie.title }
 		@role = Role.new
 		@movies = Movie.all.sort { |a,b| a.title <=> b.title }
-		@suckr = ImageSuckr::GoogleSuckr.new
 	end
 
 	def new
@@ -20,7 +18,21 @@ class ActorsController < ApplicationController
 
 	def create
 		@actor = Actor.create(actor_params)
-		redirect_to actor_path(@actor.id)
+		suckr = ImageSuckr::GoogleSuckr.new
+		@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
+		if @actor.save && @actor.image != nil
+			redirect_to actor_path(@actor.id)
+		else 
+			@actor.destroy
+			redirect_to actors_path
+		end
+	end
+
+	def destroy
+		@actor = Actor.find(params[:id])
+		@actor.roles.destroy_all
+		@actor.destroy
+		redirect_to actors_path
 	end
 
 	private
