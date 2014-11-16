@@ -18,6 +18,13 @@ class RolesController < ApplicationController
     end
   end
 
+  def destroy
+    @role = Role.find(params[:id])
+    movie_id = @role.movie.id
+    @role.destroy
+    redirect_to movie_path(movie_id)
+  end
+
   private
   def role_params
     params.require(:role).permit(:name, :movie_id, :actor_id)

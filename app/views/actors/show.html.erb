@@ -1,4 +1,5 @@
 <div>
+	
 <%= link_to 'All Actors', actors_path %>
 
 	<div id="actors" class="transitions-enabled">
@@ -7,20 +8,21 @@
 				<h2 class="center">
 					<%= @actor.name %>
 				</h2>
-					<%= image_tag @actor.image.url(:medium) %>
-			  <div class="center" id="new-form">
-			    <%= form_for @role do |f| %>
-			      <%= f.collection_select(:movie_id, @movies, :id, :title, {:class=>"btn btn-default dropdown-toggle"}, {:id=>"dropdownMenu1"}) %>
-			      <%= f.hidden_field(:actor_id, :value => @actor.id) %>
-			      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
-			    <% end %>
-			  </div>
+				<%= image_tag @actor.image.url(:medium) %>
 		  	<%= link_to @actor, method: :delete, data: { confirm: 'Are you sure?' } do %>
             Delete
         <% end %>
 			</div>
 		</div>
-	</div>			  
+	</div>		
+
+  <div class="center" id="new-form">
+    <%= form_for @role do |f| %>
+      <%= f.collection_select(:movie_id, @movies, :id, :title, {:class=>"btn btn-default dropdown-toggle"}, {:id=>"dropdownMenu1"}) %>
+      <%= f.hidden_field(:actor_id, :value => @actor.id) %>
+      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
+    <% end %>
+  </div>
 
 	<div id="movies" class="transitions-enabled">
 		<% @roles.each do |role| %>

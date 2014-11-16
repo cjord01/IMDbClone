@@ -8,19 +8,20 @@
 					<%= @movie.title %>
 				</h2>
 				<%= image_tag @movie.image.url(:medium) %>
-				<div class="center" id="new-form">
-			    <%= form_for @role do |f| %>
-			      <%= f.collection_select(:actor_id, @actors, :id, :name) %>
-			      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
-			      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
-			    <% end %>
-			  </div>
 		  	<%= link_to @movie, method: :delete, data: { confirm: 'Are you sure?' } do %>
             Delete
         <% end %>  
 			</div>
 		</div>
 	</div>
+	
+	<div class="center" id="new-form">
+    <%= form_for @role do |f| %>
+      <%= f.collection_select(:actor_id, @actors, :id, :name) %>
+      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
+      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
+    <% end %>
+  </div>
 
 	<div id="actors" class="transitions-enabled">	
 		<% @roles.each do |role| %>
@@ -30,6 +31,9 @@
 				</h3>
 				<div class="panel-body">
 					<%= image_tag role.image.url(:medium) %>
+					<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
+						Delete
+					<% end %>
 				</div>
 			</div>
 		<% end %>
