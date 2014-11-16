@@ -35,6 +35,18 @@ class ActorsController < ApplicationController
 		redirect_to actors_path
 	end
 
+	def edit
+		@actor = Actor.find(params[:id])
+		suckr = ImageSuckr::GoogleSuckr.new
+		@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
+		if @actor.save && @actor.image != nil
+			redirect_to actor_path(@actor.id)
+		else 
+			@actor.destroy
+			redirect_to actors_path
+		end
+	end
+
 	private
 	def actor_params
 		params.require(:actor).permit(:name)
