@@ -9,7 +9,7 @@
 		<% @movies.each do |movie| %>
 			<div class="box panel panel-default">
 				<h3 class="center">
-					<%= link_to "#{movie.title}", movie_path(movie) %>
+					<%= link_to "#{movie.title} (#{movie.roles.size})", movie_path(movie) %>
 				</h3>
 				<div class="panel-body">
 					<%= image_tag movie.image.url(:medium) %>
