@@ -7,7 +7,7 @@ class RolesController < ApplicationController
   end
 
   def create
-    @role = Role.create(role_params)
+    @role = Role.new(role_params)
     suckr = ImageSuckr::GoogleSuckr.new
     @role.image = suckr.get_image_file({"q" => @role.actor.name + " " + @role.movie.title})
     if @role.save && @role.image != nil

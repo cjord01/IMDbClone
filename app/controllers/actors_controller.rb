@@ -17,7 +17,7 @@ class ActorsController < ApplicationController
 	end
 
 	def create
-		@actor = Actor.create(actor_params)
+		@actor = Actor.new(actor_params)
 		suckr = ImageSuckr::GoogleSuckr.new
 		@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
 		if @actor.save && @actor.image != nil

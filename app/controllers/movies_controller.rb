@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		@movie = Movie.create(movie_params)
+		@movie = Movie.new(movie_params)
 		suckr = ImageSuckr::GoogleSuckr.new
 		@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
 		if @movie.save && @movie.image != nil
