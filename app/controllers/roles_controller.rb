@@ -13,8 +13,7 @@ class RolesController < ApplicationController
     if @role.save && @role.image != nil
       redirect_to movie_path(@role.movie.id)
     else 
-      @role.destroy
-      redirect_to root_path
+      render_404
     end
   end
 
@@ -40,6 +39,10 @@ class RolesController < ApplicationController
   private
   def role_params
     params.require(:role).permit(:name, :movie_id, :actor_id)
+  end
+
+  def render_404
+    raise ActionController::RoutingError.new("Not Found")
   end
 
 end

@@ -23,8 +23,7 @@ class ActorsController < ApplicationController
 		if @actor.save && @actor.image != nil
 			redirect_to actor_path(@actor.id)
 		else 
-			@actor.destroy
-			redirect_to actors_path
+			render_404
 		end
 	end
 
@@ -50,6 +49,10 @@ class ActorsController < ApplicationController
 	private
 	def actor_params
 		params.require(:actor).permit(:name)
+	end
+
+	def render_404
+		raise ActionController::RoutingError.new("Not Found")
 	end
 
 end

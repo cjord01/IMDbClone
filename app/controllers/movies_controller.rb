@@ -22,8 +22,7 @@ class MoviesController < ApplicationController
 		if @movie.save && @movie.image != nil
 			redirect_to movie_path(@movie.id)
 		else 
-			@movie.destroy
-			redirect_to movies_path
+			render_404
 		end
 	end
 
@@ -49,5 +48,9 @@ class MoviesController < ApplicationController
 	private
 	def movie_params
 		params.require(:movie).permit(:title)
+	end
+
+	def render_404
+		raise ActionController::RoutingError.new("Not Found")
 	end
 end
