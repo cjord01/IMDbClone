@@ -11,7 +11,7 @@
 					<%= link_to "#{actor.name} (#{actor.roles.size})", actor_path(actor) %>
 				</h3>
 				<div class="panel-body">
-					<%= image_tag actor.image.url(:medium) %>
+					<%= link_to image_tag(actor.image.url(:medium)), actor_path(actor) %>
 				</div>
 			</div>
 		<% end %>

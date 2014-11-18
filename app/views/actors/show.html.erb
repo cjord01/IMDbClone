@@ -33,7 +33,7 @@
 					<%= link_to "#{role.movie.title}", movie_path(role.movie)%>
 				</h3>
 				<div class="panel-body">
-					<%= image_tag role.image.url(:medium) %>
+					<%= link_to image_tag(role.image.url(:medium)), movie_path(role.movie) %>
 					<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
 						Delete
 					<% end %>

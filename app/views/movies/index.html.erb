@@ -12,7 +12,7 @@
 					<%= link_to "#{movie.title} (#{movie.roles.size})", movie_path(movie) %>
 				</h3>
 				<div class="panel-body">
-					<%= image_tag movie.image.url(:medium) %>
+					<%= link_to image_tag(movie.image.url(:medium)), movie_path(movie) %>
 				</div>
 			</div>
 		<% end %>
