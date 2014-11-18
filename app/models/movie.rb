@@ -3,4 +3,5 @@ class Movie < ActiveRecord::Base
 	has_many :actors, through: :roles
 
 	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+	validates :title, presence: true
 end
