@@ -3,10 +3,12 @@
 $body-bg: #ecf0f1;
 $font-family-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $navbar-height: 45px;
-$navbar-default-bg: white;
-$navbar-default-brand-color: #c0392b;
-$brand-primary: #c0392b;
-$jumbotron-bg: white;
+$navbar-default-bg: #333333;
+$navbar-default-brand-color: #3D84DD;
+$brand-primary: #3D84DD;
+$brand-primary-color: #333333;
+$jumbotron-bg: #333333;
+$panel-bg: #333333;
 
 @import 'bootstrap';
 
@@ -14,6 +16,27 @@ $jumbotron-bg: white;
      text-align: center;
 }
 
+.jumbotron h1 {
+	color: #3D84DD;
+}
+
+.jumbotron p {
+	color: #3D84DD;
+}
+
+.navbar a {
+	color: #3D84DD;
+}
+
+h2 {
+	color: #3D84DD;
+}
+
+.btn-primary {
+	color: #333333;
+}
+
 .navbar-brand {
      font-weight: bold;
 }
+
