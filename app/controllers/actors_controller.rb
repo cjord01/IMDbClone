@@ -23,7 +23,7 @@ class ActorsController < ApplicationController
 		if @actor.save && @actor.image != nil
 			redirect_to actor_path(@actor.id)
 		else 
-			render_404
+			redirect_to actors_path
 		end
 	end
 
@@ -38,21 +38,13 @@ class ActorsController < ApplicationController
 		@actor = Actor.find(params[:id])
 		suckr = ImageSuckr::GoogleSuckr.new
 		@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
-		if @actor.save && @actor.image != nil
-			redirect_to actor_path(@actor.id)
-		else 
-			@actor.destroy
-			redirect_to actors_path
-		end
+		@actor.save
+		redirect_to actor_path(@actor.id)
 	end
 
 	private
 	def actor_params
 		params.require(:actor).permit(:name)
-	end
-
-	def render_404
-		raise ActionController::RoutingError.new("Not Found")
 	end
 
 end

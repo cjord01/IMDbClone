@@ -20,9 +20,9 @@ class MoviesController < ApplicationController
 		suckr = ImageSuckr::GoogleSuckr.new
 		@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
 		if @movie.save && @movie.image != nil
-			redirect_to movie_path(@movie.id)
+			redirect_to movie_path(@movie.id)#, notice: 'Pin was successfully created.'
 		else 
-			render_404
+			render action: 'new'
 		end
 	end
 
@@ -37,20 +37,12 @@ class MoviesController < ApplicationController
 		@movie = Movie.find(params[:id])
 		suckr = ImageSuckr::GoogleSuckr.new
 		@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
-		if @movie.save && @movie.image != nil
-			redirect_to movie_path(@movie.id)
-		else 
-			@movie.destroy
-			redirect_to movies_path
-		end
+		@movie.save
+		redirect_to movie_path(@movie.id)
 	end
 
 	private
 	def movie_params
 		params.require(:movie).permit(:title)
-	end
-
-	def render_404
-		raise ActionController::RoutingError.new("Not Found")
 	end
 end

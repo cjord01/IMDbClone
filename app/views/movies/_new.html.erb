@@ -1,6 +1,19 @@
 <div class="form-inline">
 	<%= form_for @movie do |f| %>
-		<%= f.text_field :title, placeholder: "Title", class: "form-control" %>
-		<%= f.submit "Add Movie", class: "btn btn-primary"%>
+		<% if @movie.errors.any? %>
+			<div id="error_explanation"></div>
+				<h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+	      <ul>
+	      <% @movie.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+				<%= f.text_field :title, placeholder: "Title", class: "form-control" %>
+				<%= f.submit "Add Movie", class: "btn btn-primary"%>
+			
 	<% end %>
 </div>
