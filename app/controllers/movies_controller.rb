@@ -16,13 +16,18 @@ class MoviesController < ApplicationController
 	end
 
 	def create
-		@movie = Movie.new(movie_params)
-		suckr = ImageSuckr::GoogleSuckr.new
-		@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
-		if @movie.save && @movie.image != nil
-			redirect_to movie_path(@movie.id)#, notice: 'Pin was successfully created.'
+		movie = Movie.find_by(movie_params)
+		if movie == nil
+			@movie = Movie.new(movie_params)
+			suckr = ImageSuckr::GoogleSuckr.new
+			@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
+			if @movie.save && @movie.image != nil
+				redirect_to movie_path(@movie.id)
+			else 
+				redirect_to movies_path
+			end
 		else 
-			render action: 'new'
+			redirect_to movie_path(movie.id)
 		end
 	end
 

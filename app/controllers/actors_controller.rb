@@ -17,13 +17,18 @@ class ActorsController < ApplicationController
 	end
 
 	def create
-		@actor = Actor.new(actor_params)
-		suckr = ImageSuckr::GoogleSuckr.new
-		@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
-		if @actor.save && @actor.image != nil
-			redirect_to actor_path(@actor.id)
-		else 
-			redirect_to actors_path
+		actor = Actor.find_by(actor_params)
+		if actor == nil
+			@actor = Actor.new(actor_params)
+			suckr = ImageSuckr::GoogleSuckr.new
+			@actor.image = suckr.get_image_file({"q" => "Actor " + @actor.name })
+			if @actor.save && @actor.image != nil
+				redirect_to actor_path(@actor.id)
+			else 
+				redirect_to actors_path
+			end
+		else
+			redirect_to actor_path(actor.id)
 		end
 	end
 
