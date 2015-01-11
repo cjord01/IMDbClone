@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
 			suckr = ImageSuckr::GoogleSuckr.new
 			@movie.image = suckr.get_image_file({"q" => @movie.title + " movie poster"})
 			if @movie.save && @movie.image != nil
-				redirect_to movie_path(@movie.id)
+				redirect_to movie_path(@movie.id) 
 			else 
 				redirect_to movies_path
 			end
