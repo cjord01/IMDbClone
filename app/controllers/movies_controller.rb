@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 	def index
-		@movies = Movie.all.order("title ASC").paginate(:page => params[:page], :per_page => 24)
+		@movies = Movie.all.order("title ASC").paginate(:page => params[:page], :per_page => 36)
 		@movie = Movie.new
 	end
 

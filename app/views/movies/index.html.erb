@@ -4,6 +4,10 @@
 		<h1>MOVIES</h1>
 		<%= render 'new' %>
 	</div>
+
+	<div class="center">
+		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
+	</div>
 	
 	<div id="movies" class="transitions-enabled">	
 		<% @movies.each do |movie| %>
@@ -17,6 +21,7 @@
 			</div>
 		<% end %>
 	</div>
+
 	<div class="center">
 		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
 	</div>

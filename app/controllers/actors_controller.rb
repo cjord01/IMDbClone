@@ -1,7 +1,7 @@
 class ActorsController < ApplicationController
 
 	def index
-		@actors = Actor.all.order("Name ASC").paginate(:page => params[:page], :per_page => 24)
+		@actors = Actor.all.order("Name ASC").paginate(:page => params[:page], :per_page => 36)
 		@actor = Actor.new
 	end
 

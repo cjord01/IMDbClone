@@ -4,6 +4,10 @@
 		<%= render 'new' %>
 	</div>
 
+	<div class="center">
+		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
+	</div>
+
 	<div id="actors" class="transitions-enabled">	
 		<% @actors.each do |actor| %>
 			<div class="box panel panel-default">
