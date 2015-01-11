@@ -24,8 +24,12 @@ $panel-bg: #333333;
 	color: #3D84DD;
 }
 
-.navbar a {
-	color: #3D84DD;
+.navbar-default .navbar-nav li a {
+	color: #777777;
+}
+
+.navbar-default .navbar-nav li a:hover {
+	color: #dddddd;
 }
 
 h2 {
@@ -37,6 +41,5 @@ h2 {
 }
 
 .navbar-brand {
-     font-weight: bold;
+  font-weight: bold;
 }
-
