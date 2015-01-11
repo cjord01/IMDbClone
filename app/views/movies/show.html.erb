@@ -4,19 +4,22 @@
 	<div id="movies" class="transitions-enabled">
 		<div class="box panel panel-default">
 			<div class="panel-body">
-				<h2 class="center">
-					<%= @movie.title %>
-				</h2>
+				<div class="center">
+					<h2 class="show-page-title"><%= @movie.title %></h2>
+				</div>
+				<div class="center" id="trailer-link">
+					<%= link_to 'Watch the trailer!', "http://www.google.com/search?ie=UTF-8&q=#{@movie.title}+trailer", :target => "_blank", class: 'btn btn-primary btn-lg' %>
+				</div>
 				<%= image_tag @movie.image.url(:medium) %>
 		  	<%= link_to @movie, method: :delete, data: { confirm: 'Are you sure?' } do %>
             Delete
         <% end %>  
         |
-        <%= link_to 'Change Image', edit_movie_path %>  
+        <%= link_to 'Change Image', edit_movie_path %>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="center" id="new-form">
     <%= form_for @role do |f| %>
       <%= f.collection_select(:actor_id, @actors, :id, :name) %>
@@ -25,22 +28,23 @@
     <% end %>
   </div>
 
-	<div id="actors" class="transitions-enabled">	
-		<% @roles.each do |role| %>
-			<div class="box panel panel-default">
-				<h3 class="center">
-					<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
-				</h3>
-				<div class="panel-body">
-					<%= link_to image_tag(role.image.url(:medium)), actor_path(role.actor) %>
-					<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
-						Delete
-					<% end %>
-					|
-					<%= link_to 'Change Image', edit_role_path(role.id) %>
+  <div class="show-content">
+		<div id="actors" class="transitions-enabled">	
+			<% @roles.each do |role| %>
+				<div class="box panel panel-default">
+					<h3 class="center">
+						<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
+					</h3>
+					<div class="panel-body">
+						<%= link_to image_tag(role.image.url(:medium)), actor_path(role.actor) %>
+						<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
+							Delete
+						<% end %>
+						|
+						<%= link_to 'Change Image', edit_role_path(role.id) %>
+					</div>
 				</div>
-			</div>
-		<% end %>
+			<% end %>
+		</div>
 	</div>
-
 </div>

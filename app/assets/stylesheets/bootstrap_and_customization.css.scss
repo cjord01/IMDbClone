@@ -24,6 +24,10 @@ $panel-bg: #333333;
 	color: #3D84DD;
 }
 
+.jumbotron {
+	margin-bottom: 0px;
+}
+
 .navbar-default .navbar-nav li a {
 	color: #777777;
 }
@@ -36,10 +40,27 @@ h2 {
 	color: #3D84DD;
 }
 
+h3 {
+	margin: 10px 15px 0px 15px;
+}
+
 .btn-primary {
 	color: #333333;
 }
 
 .navbar-brand {
   font-weight: bold;
+}
+
+.show-content {
+	margin-bottom: 25px;
+}
+
+#trailer-link {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.show-page-title {
+	margin: 5px;
 }
