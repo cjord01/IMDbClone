@@ -20,7 +20,7 @@
 
   <div class="center" id="new-form">
     <%= form_for @role do |f| %>
-      <%= f.collection_select(:movie_id, @movies, :id, :title, {:class=>"btn btn-default dropdown-toggle"}, {:id=>"dropdownMenu1"}) %>
+      <%= f.collection_select(:movie_id, @movies, :id, :title, {}, {:class=>'btn btn-primary btn-lg'}) %>
       <%= f.hidden_field(:actor_id, :value => @actor.id) %>
       <%= f.submit "Add Role", :class=>"btn btn-primary"%>
     <% end %>
