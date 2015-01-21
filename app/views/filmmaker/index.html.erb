@@ -1,0 +1,28 @@
+<div>
+	<div class="jumbotron center">
+		<h1>FILMMAKERS</h1>
+		<%= render 'new' %>
+	</div>
+
+	<div class="center">
+		<%= will_paginate @filmmakers, renderer: BootstrapPagination::Rails %>
+	</div>
+
+	<div id="filmmakers" class="transitions-enabled">	
+		<% @filmmakers.each do |filmmaker| %>
+			<div class="box panel panel-default">
+				<h3 class="center">
+					<%= link_to "#{filmmaker.name} (#{filmmaker.crew_members.size})", filmmaker_path(filmmaker) %>
+				</h3>
+				<div class="panel-body">
+					<%= link_to image_tag(filmmaker.image.url(:medium)), filmmaker_path(filmmaker) %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	
+	<div class="center">
+		<%= will_paginate @filmmakers, renderer: BootstrapPagination::Rails %>
+	</div>
+
+</div>

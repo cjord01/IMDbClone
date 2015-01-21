@@ -1,0 +1,6 @@
+<div class="form-inline">
+	<%= form_for @filmmaker do |f| %>
+		<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+		<%= f.submit "Add Actor", :class=>"btn btn-primary"%>
+	<% end %>
+</div>
