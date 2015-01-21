@@ -1,0 +1,2 @@
+class FilmmakerController < ApplicationController
+end
