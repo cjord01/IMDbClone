@@ -1,5 +1,5 @@
 class Filmmaker < ActiveRecord::Base
-	has_many :crew_member
+	has_many :crew_members
 	has_many :movies, through: :crew_member
 	has_many :jobs, through: :crew_member
 

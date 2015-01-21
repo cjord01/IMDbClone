@@ -1,11 +1,11 @@
 <div>
 	<div class="jumbotron center">
 		<h1>FILMMAKERS</h1>
-		<%= #render 'new' %>
+		<%= render 'new' %>
 	</div>
 
 	<div class="center">
-		<%= will_paginate @filmmakers, renderer: BootstrapPagination::Rails %>
+		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
 	</div>
 
 	<div id="filmmakers" class="transitions-enabled">	
@@ -22,7 +22,7 @@
 	</div>
 	
 	<div class="center">
-		<%= will_paginate @filmmakers, renderer: BootstrapPagination::Rails %>
+		<%= will_paginate @actors, renderer: BootstrapPagination::Rails %>
 	</div>
 
 </div>
