@@ -1,10 +1,10 @@
 class RolesController < ApplicationController
 
-  def new
-    @role = Role.new
-    @movies = Movie.all.sort { |a,b| a.title <=> b.title }
-    @actors = Actor.all.sort { |a,b| a.name <=> b.name }
-  end
+  # def new
+  #   @role = Role.new
+  #   @movies = Movie.all.sort { |a,b| a.title <=> b.title }
+  #   @actors = Actor.all.sort { |a,b| a.name <=> b.name }
+  # end
 
   def create
     @role = Role.new(role_params)
@@ -15,7 +15,7 @@ class RolesController < ApplicationController
       redirect_to movie_path(@role.movie.id)
     else 
       @role.destroy
-      redirect_to movie_path(movie)
+      redirect_to movie_path(movie.id)
     end
   end
 
