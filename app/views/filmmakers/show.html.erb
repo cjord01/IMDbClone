@@ -27,6 +27,25 @@
     <% end %>
   </div>
 
-  <!-- add 'show content' - actor/show -->
+  <div class="show-content">
+		<div id="filmmakers" class="transitions-enabled">
+			<% @crew_members.each do |crew_member| %>
+				<div class="box panel panel-default">
+					<h3 class="center">
+						<%= link_to "#{crew_member.movie.title}", movie_path(crew_member.movie)%>
+					</h3>
+						<h4><%= "#{crew_member.job.title}"%></h4>
+					<div class="panel-body">
+						<%= link_to image_tag(crew_member.movie.image.url(:medium)), movie_path(crew_member.movie) %>
+						<%= link_to crew_member, method: :delete, data: {confirm: 'Are you sure?'} do %>
+							Delete
+						<% end %>
+						|
+						<%= link_to 'Change Image', edit_crew_member_path(crew_member.id) %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 
 </div>

@@ -16,6 +16,37 @@ class FilmmakersController < ApplicationController
 		@filmmaker = Filmmaker.new
 	end
 
+	def create
+		filmmaker = Filmmaker.find_by(filmmaker_params)
+		if filmmaker == nil
+			@filmmaker = Filmmaker.new(filmmaker_params)
+			suckr = ImageSuckr::GoogleSuckr.new
+			@filmmaker.image = suckr.get_image_file({"q" => "Filmmaker " + @filmmaker.name})
+			if @filmmaker.save && @filmmaker.image != nil
+				redirect_to filmmaker_path(@filmmaker.id)
+			else
+				redirect_to filmmakers_path
+			end
+		else
+			redirect_to filmmaker_path(filmmaker.id)
+		end
+	end
+
+	def destroy
+		@filmmaker = Filmmaker.find(params[:id])
+		@filmmaker.crew_members.destroy_all
+		@filmmaker.destroy
+		redirect_to filmmakers_path
+	end
+
+	def edit
+		@filmmaker = Filmmaker.find(params[:id])
+		suckr = ImageSuckr::GoogleSuckr.new
+		@filmmaker.image = suckr.get_image_file({"q" => "Filmmaker " + @filmmaker.name})
+		@filmmaker.save
+		redirect_to filmmaker_path(@filmmaker.id)
+	end
+
 	private
 	def filmmaker_params
 		params.require(:filmmaker).permit(:name)
