@@ -2,6 +2,9 @@ IMDbClone::Application.routes.draw do
   resources :movies
   resources :actors
   resources :roles
+  resources :filmmakers
+  resources :crew_members
+  resources :jobs
   
   root "pages#home"
   get "about" => "pages#about"

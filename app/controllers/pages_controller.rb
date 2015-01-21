@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   	@movies = Movie.all
   	@actors = Actor.all
   	@roles = Role.all
+  	@filmmakers = Filmmaker.all
   end
 
   def about
