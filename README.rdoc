@@ -3,3 +3,5 @@
 MyIMDb is a place to create a personalized IMDb of only your favorite movies, filmmakers, and actors and their roles. 
 
 This site was built with Ruby on Rails, Bootstrap, jQuery Masonry, and Paperclip.
+
+The live site can be found here - https://myimdb.herokuapp.com
