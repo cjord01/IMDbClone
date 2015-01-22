@@ -20,31 +20,64 @@
 		</div>
 	</div>
 
-	<div class="center" id="new-form">
-    <%= form_for @role do |f| %>
-      <%= f.collection_select(:actor_id, @actors, :id, :name, {}, {:class=>'btn btn-primary btn-lg'})%>
-      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
-      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
-    <% end %>
-  </div>
-
-  <div class="show-content">
-		<div id="actors" class="transitions-enabled">	
-			<% @roles.each do |role| %>
-				<div class="box panel panel-default">
-					<h3 class="center">
-						<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
-					</h3>
-					<div class="panel-body">
-						<%= link_to image_tag(role.image.url(:medium)), actor_path(role.actor) %>
-						<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
-							Delete
-						<% end %>
-						|
-						<%= link_to 'Change Image', edit_role_path(role.id) %>
+	<div class="actors-show">
+		<h2 class="center">ACTORS</h2>
+		<div class="center" id="new-form">
+	    <%= form_for @role do |f| %>
+	      <%= f.collection_select(:actor_id, @actors, :id, :name, {}, {:class=>'btn btn-primary btn-lg'})%>
+	      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
+	      <%= f.submit "Add Role", :class=>"btn btn-primary"%>
+	    <% end %>
+	  </div>
+	  <div class="show-content">
+			<div id="actors" class="transitions-enabled">	
+				<% @roles.each do |role| %>
+					<div class="box panel panel-default">
+						<h3 class="center">
+							<%= link_to "#{role.actor.name}", actor_path(role.actor) %>
+						</h3>
+						<div class="panel-body">
+							<%= link_to image_tag(role.image.url(:medium)), actor_path(role.actor) %>
+							<%= link_to role, method: :delete, data: {confirm: 'Are you sure?'} do %>
+								Delete
+							<% end %>
+							|
+							<%= link_to 'Change Image', edit_role_path(role.id) %>
+						</div>
 					</div>
-				</div>
-			<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<div class="filmmakers-show">
+		<h2 class="center">FILMMAKERS</h2>
+		 <div class="center" id="new-form">
+	    <%= form_for @crew_member do |f| %>
+	      <%= f.collection_select(:filmmaker_id, @filmmakers, :id, :name, {}, {:class=>'btn btn-primary btn-lg'}) %>
+	      <%= f.collection_select(:job_id, @jobs, :id, :title, {}, {:class=>'btn btn-primary btn-lg'}) %>
+	      <%= f.hidden_field(:movie_id, :value => @movie.id) %>
+	      <%= f.submit "Add Filmmaker", :class=>"btn btn-primary"%>
+	    <% end %>
+	  </div>
+
+		<div class="show-content">
+			<div id="filmmakers" class="transitions-enabled">	
+				<% @crew_members.each do |crew_member| %>
+					<div class="box panel panel-default">
+						<h3 class="center">
+							<%= link_to "#{crew_member.filmmaker.name}", filmmaker_path(crew_member.filmmaker) %>
+						</h3>
+						<h4 class="center"><%= "#{crew_member.job.title}"%></h4>
+						<div class="panel-body">
+							<%= link_to image_tag(crew_member.filmmaker.image.url(:medium)), filmmaker_path(crew_member.filmmaker) %>
+							<%= link_to crew_member, method: :delete, data: {confirm: 'Are you sure?'} do %>
+								Delete
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

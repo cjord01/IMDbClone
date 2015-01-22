@@ -38,10 +38,17 @@ $panel-bg: #333333;
 
 h2 {
 	color: #3D84DD;
+	margin-top: 5px;
 }
 
 h3 {
 	margin: 10px 15px 0px 15px;
+}
+
+h4 {
+	color: #3D84DD;
+	margin-top: 5px;
+	margin-bottom: 0px;
 }
 
 .btn-primary {
@@ -53,7 +60,7 @@ h3 {
 }
 
 .show-content {
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 
 #trailer-link {
@@ -67,6 +74,38 @@ h3 {
 
 select {
 	width: 175px;
+}
+
+.actors-show {
+	border: solid;
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+.actors-show h2 {
+	background: #333333;
+	padding: 10px;
+	margin-top: 0px;
+}
+
+#actors h4 {
+	margin-bottom: 15px;
+}
+
+.filmmakers-show {
+	margin-bottom: 75px;
+	border: solid;
+	border-radius: 3px;
+}
+
+.filmmakers-show h2 {
+	background: #333333;
+	padding: 10px;
+	margin-top: 0px;
+}
+
+#filmmakers h4 {
+	margin-bottom: 15px;
 }
 
 // select {

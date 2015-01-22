@@ -7,6 +7,7 @@
 			<div class="panel-body">
 				<div class="center">
 					<h2 class="show-page-title"><%= @filmmaker.name %></h2>
+					<h4 class="center">Filmmaker</h4>
 				</div>
 				<%= image_tag @filmmaker.image.url(:medium) %>
 		  	<%= link_to @filmmaker, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -34,7 +35,7 @@
 					<h3 class="center">
 						<%= link_to "#{crew_member.movie.title}", movie_path(crew_member.movie)%>
 					</h3>
-						<h4><%= "#{crew_member.job.title}"%></h4>
+						<h4 class="center"><%= "#{crew_member.job.title}"%></h4>
 					<div class="panel-body">
 						<%= link_to image_tag(crew_member.movie.image.url(:medium)), movie_path(crew_member.movie) %>
 						<%= link_to crew_member, method: :delete, data: {confirm: 'Are you sure?'} do %>

@@ -9,6 +9,10 @@ class MoviesController < ApplicationController
 		@roles = @movie.roles.sort { |a,b| a.actor.name <=> b.actor.name }
 		@role = Role.new
 		@actors = Actor.all.sort { |a,b| a.name <=> b.name }
+		@crew_members = @movie.crew_members.sort { |a,b| a.filmmaker.name <=> b.filmmaker.name }
+		@crew_member = CrewMember.new
+		@filmmakers = Filmmaker.all.sort { |a,b,| a.name <=> b.name }
+		@jobs = Job.all
 	end
 
 	def new
