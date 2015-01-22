@@ -21,8 +21,8 @@
 
   <div class="center" id="new-form">
     <%= form_for @crew_member do |f| %>
-      <%= f.collection_select(:movie_id, @movies, :id, :title, {}, {:class=>'btn btn-primary btn-lg'}) %>
-      <%= f.collection_select(:job_id, @jobs, :id, :title, {}, {:class=>'btn btn-primary btn-lg'}) %>
+      <%= f.collection_select(:movie_id, @movies, :id, :title, {:prompt=>true}, {:class=>'btn btn-primary btn-lg'}) %>
+      <%= f.collection_select(:job_id, @jobs, :id, :title, {:prompt=>true}, {:class=>'btn btn-primary btn-lg'}) %>
       <%= f.hidden_field(:filmmaker_id, :value => @filmmaker.id) %>
       <%= f.submit "Add Movie", :class=>"btn btn-primary"%>
     <% end %>
