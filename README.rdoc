@@ -1,12 +1,5 @@
 == README
 
-MyIMDb is a place to create a personalized IMDb of only your favorite movies, actors, and their roles. 
+MyIMDb is a place to create a personalized IMDb of only your favorite movies, filmmakers, and actors and their roles. 
 
 This site was built with Ruby on Rails, Bootstrap, jQuery Masonry, and Paperclip.
-
-Future features will include:
-* User login
-* Filmmakers (directors, writers, producers)
-* TV Shows
-* "See Trailer" button
-* Search option
