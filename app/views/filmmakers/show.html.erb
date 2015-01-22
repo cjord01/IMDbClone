@@ -4,11 +4,11 @@
 
 	<div id="filmmakers" class="transitions-enabled">
 		<div class="box panel panel-default">
+			<div class="center">
+				<h2 class="show-page-title"><%= @filmmaker.name %></h2>
+				<h4 class="center">Filmmaker</h4>
+			</div>
 			<div class="panel-body">
-				<div class="center">
-					<h2 class="show-page-title"><%= @filmmaker.name %></h2>
-					<h4 class="center">Filmmaker</h4>
-				</div>
 				<%= image_tag @filmmaker.image.url(:medium) %>
 		  	<%= link_to @filmmaker, method: :delete, data: { confirm: 'Are you sure?' } do %>
             Delete
