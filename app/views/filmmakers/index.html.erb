@@ -14,6 +14,26 @@
 				<h3 class="center">
 					<%= link_to "#{filmmaker.name} (#{filmmaker.crew_members.size})", filmmaker_path(filmmaker) %>
 				</h3>
+				<% if filmmaker.crew_members.size != 0 %>
+					<% @jobs = [] %>
+					<% filmmaker.crew_members.each do |crew_member| %>
+						<% @jobs << crew_member.job.title.to_s %>
+					<% end %>
+					<% if @jobs.include?("Writer/Director")%>
+						<h4 class="center">Writer/Director</h4>
+					<% elsif @jobs.include?("Director") && @jobs.include?("Writer")%>
+						<h4 class="center">Writer/Director</h4>
+					<% elsif @jobs.include?("Director")%>
+						<h4 class="center">Director</h4>
+					<% elsif @jobs.include?("Writer")%>
+						<h4 class="center">Writer</h4>
+					<% else %>
+						<h4 class="center">Producer</h4>
+					<% end %>
+				<% else %>
+					<h4 class="center">Filmmaker</h4>
+				<% end %>
+				
 				<div class="panel-body">
 					<%= link_to image_tag(filmmaker.image.url(:medium)), filmmaker_path(filmmaker) %>
 				</div>
